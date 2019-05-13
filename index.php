@@ -38,7 +38,7 @@ $f3->route('GET|POST /survey', function ($f3){
             $f3->reroute('summary');
         }
     }
-    $boxes = array('a'=>'A', 'b'=>'B', 'c'=>'C');
+    $boxes = array('apple'=>'Apple', 'banana'=>'Banana', 'carrot'=>'Carrot');
     $_SESSION['boxes'] = $boxes;
     $thing = new Template();
     echo $thing->render('views/survey.php');

@@ -16,10 +16,20 @@
             <p>{{@errors.nameERR}}</p>
         </check>
         <repeat group="{{@SESSION.boxes}}" key="@key" value="@val">
-            <div>
-                <input type="checkbox" name="boxes[]" id="{{@key}}" value="{{@val}}" >
-                <label for="{{@key}}">{{@val}}</label>
-            </div>
+            <check if="{{@checked['@val']}}">
+                <true>
+                    <div>
+                        <input type="checkbox" name="boxes[]" id="{{@key}}" value="{{@val}}" checked>
+                        <label for="{{@key}}">{{@val}}</label>
+                    </div>
+                </true>
+                <false>
+                    <div>
+                        <input type="checkbox" name="boxes[]" id="{{@key}}" value="{{@val}}" >
+                        <label for="{{@key}}">{{@val}}</label>
+                    </div>
+                </false>
+            </check>
         </repeat>
         <check if="{{ isset(@errors)}} ">
             <p>{{@errors['boxERR']}}</p>
