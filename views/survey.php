@@ -11,13 +11,19 @@
     <h1>Midterm Survey</h1>
     <form action="" method="post">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="text" id="name" name="name" placeholder="Name" value="{{@name}}">
+        <check if="{{ isset(@errors)}} ">
+            <p>{{@errors.nameERR}}</p>
+        </check>
         <repeat group="{{@SESSION.boxes}}" key="@key" value="@val">
             <div>
-                <input type="checkbox" name="boxes[]" id="{{@key}}" value="{{@val}}">
+                <input type="checkbox" name="boxes[]" id="{{@key}}" value="{{@val}}" >
                 <label for="{{@key}}">{{@val}}</label>
             </div>
         </repeat>
+        <check if="{{ isset(@errors)}} ">
+            <p>{{@errors['boxERR']}}</p>
+        </check>
         <button type="submit">Submit</button>
     </form>
 </body>

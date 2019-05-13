@@ -15,9 +15,28 @@ $f3->route('GET|POST /', function (){
 
 $f3->route('GET|POST /survey', function ($f3){
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $_SESSION['name'] = $_POST['name'];
-        $_SESSION['checkedBoxes'] = $_POST['boxes'];
-        $f3->reroute('summary');
+        $f3->set('name', $_POST['name']);
+        $f3->set('checked', $_POST['boxes']);
+        $errors = false;
+        if($_POST['name'] == ''){
+            $f3->set('errors["nameERR"]' , 'You forget to enter your name');
+            $errors = true;
+        }
+        else{
+            $_SESSION['name'] = $_POST['name'];
+        }
+        $checked = $_POST['boxes'];
+        if(empty($checked)){
+            $f3->set("errors['boxERR']" , 'You forget to select at least one box');
+            $errors = true;
+        }
+        else{
+            $_SESSION['checkedBoxes'] = $_POST['boxes'];
+        }
+
+        if(!$errors){
+            $f3->reroute('summary');
+        }
     }
     $boxes = array('a'=>'A', 'b'=>'B', 'c'=>'C');
     $_SESSION['boxes'] = $boxes;
