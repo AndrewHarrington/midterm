@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary</title>
+</head>
+<body>
+    <h1>Midterm Survey</h1>
+    <p>Thank you for taking the midterm, {{ @SESSION.name }}!</p>
+    <h3>Your Answers:</h3>
+    <p>
+        <repeat group="{{@SESSION.checkedBoxes}}" value="@checked">
+            {{@checked}}
+        </repeat>
+    </p>
+</body>
+</html>
